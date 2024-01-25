@@ -1,37 +1,19 @@
 class LinksController < ApplicationController
 
     def create
-        @link = Link.new(link_params)
-        if @link.save
-          render json: {short_url: @link.short_url}, status: :created
-        else
-          render json: {errors: @link.errors}, status: :unprocessable_entity
-        end
-      end
-
-    def show
-        @link = Link.find(params[:id])
-       
+        @long_url = params['long_url']
+        @short_url = generate_short_url
+        render json: {
+            :message => "short_url created successfully",
+            :short_url => @short_url
+            }, status: :ok
     end
-
-    def redirect 
-        @link = Link.find_by(short_url: params[:short_url])
-        if @link.nil?
-          render json: {error: "No link found with the provided Short URL"}, status: :not_found
-        else
-          @link.update_attribute(:clicks, @link.clicks + 1)
-          redirect_to @link.long_url, status: :found
-        end
-      end
 
     private
-
-    def link_params
-        params.require(:link).permit(:long_url, :custom_url)
-    end
-
     def generate_short_url
-        Base64.urlsafe_encode64(@link.long_url)[0..6]
+        short_code = Base64.urlsafe_encode64(@long_url)[0..6]
+        base_url = "http://127.0.0.1:3000/"
+        base_url + short_code
     end
 
 end
