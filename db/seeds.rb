@@ -1,9 +1,4 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
+Link.create(long_url: 'https://www.forever21.com', short_url: '4eva21', custom_url:'custom2')
+Link.create(long_url: 'https://stylebyemilyhenderson.com/', short_url: 'sbehs', custom_url:'custom3')
+Link.create(long_url: 'https://www.goole.com', short_url: 'ggl', custom_url:'custom4')
+Link.create(long_url: 'https://www.designbyhumans.com/?gad_source=1&gclid=Cj0KCQiAqsitBhDlARIsAGMR1Rj2IzzYHu4TPVPc0QfcGYKOdUyfpL1HI-sG3WxQVMn25JXuuquGZdIaAobdEALw_wcB', short_url: 'dbh', custom_url:'custom5')
