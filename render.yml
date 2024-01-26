@@ -1,7 +1,7 @@
 databases:
-  - name: mysite
-    databaseName: mysite
-    user: mysite
+  - name: fupishaz
+    databaseName: fupishaz
+    user: jacinta
     plan: free
 
 services:
