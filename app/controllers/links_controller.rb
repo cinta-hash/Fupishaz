@@ -9,7 +9,14 @@ class LinksController < ApplicationController
     end
 
     def redirect
-        
+        @short_code = params["short_code"]
+        long_url = get_url_by_short_code
+
+        if long_url
+            redirect_to long_url, allow_other_host: true
+        else
+            render json: {:long_url => long_url}, status: :not_found
+        end
     end
 
     private
@@ -28,6 +35,17 @@ class LinksController < ApplicationController
         my_new_url.save
         
         my_new_url.short_url
+    end
+    def get_url_by_short_code
+        base_url = "http://127.0.0.1:3000/"
+        @short_url = base_url + @short_code
+
+        link_record = Link.find_by(short_url: @short_url)
+        if link_record
+            return link_record.long_url
+        else 
+            return nil
+        end
     end
 
 end
