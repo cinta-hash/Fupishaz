@@ -6,7 +6,7 @@ ruby "3.2.2"
 gem "rails", "~> 7.1.3"
 
 # Use sqlite3 as the database for Active Record
-gem "pg"
+gem 'sqlite3'
 
 gem 'psych', '~>3.0'
 
